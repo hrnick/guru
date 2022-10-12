@@ -6,6 +6,8 @@ EGIT_REPO_URI="https://github.com/${PN}/${PN}.git"
 DESCRIPTION="Offline maps and navigation using OpenStreetMap data"
 HOMEPAGE="https://organicmaps.app"
 
+KEYWORDS="~amd64"
+
 LICENSE="Apache-2.0"
 SLOT="0"
 
@@ -24,6 +26,12 @@ RDEPEND=""
 PATCHES=(
 	"${FILESDIR}/${P}-zlib-compile.patch"
 )
+
+src_prepare() {
+	eapply_user
+
+	cmake_src_prepare
+}
 
 src_configure() {
 	CMAKE_BUILD_TYPE="RelWithDebInfo"
